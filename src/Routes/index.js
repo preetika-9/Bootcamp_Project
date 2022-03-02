@@ -1,3 +1,2 @@
-import AppRoutes from "./AppRoutes";
-
-export { AppRoutes };
+export * from "./AppRoutes";
+export * from "./Header";
