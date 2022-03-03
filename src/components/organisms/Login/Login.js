@@ -1,6 +1,8 @@
 import { Form } from "react-bootstrap";
 import { Controller, useForm } from "react-hook-form";
 import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { Button } from "bootstrap";
 
 export const Login = () => {
   const schema = yup
@@ -24,7 +26,7 @@ export const Login = () => {
   const onSubmit = (values) => {
     return new Promise((resolve) => {
       setTimeout(() => {
-        alert(JSON.stringify(values, nill, 2));
+        alert(JSON.stringify(values, null, 2));
         resolve();
       }, 1000);
     });
