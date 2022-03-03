@@ -2,12 +2,12 @@ import { Form } from "react-bootstrap";
 import { Controller, useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Button } from "bootstrap";
+import { Button } from "react-bootstrap";
 
 export const Login = () => {
   const schema = yup
     .object({
-      email: yup.string().nullable().email.required("Email is required"),
+      email: yup.string().nullable().email().required("Email is required"),
       password: yup
         .string()
         .min(8)
@@ -19,7 +19,7 @@ export const Login = () => {
     })
     .required();
 
-  const { control, handleSubmit, formState } = useForm({
+  const { control, handleSubmit } = useForm({
     resolver: yupResolver(schema),
   });
 
@@ -34,7 +34,7 @@ export const Login = () => {
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      <Form.Text>Log in</Form.Text>
+      <h1>Log in</h1>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Email</Form.Label>
         <Controller
@@ -59,13 +59,15 @@ export const Login = () => {
           control={control}
           name="password"
           render={({ field, fieldState }) => {
-            <Form.Control
-              {...field}
-              {...fieldState}
-              error={fieldState.error}
-              placeholder="Enter your Password"
-              type="password"
-            />;
+            return (
+              <Form.Control
+                {...field}
+                {...fieldState}
+                error={fieldState.error}
+                placeholder="Enter your Password"
+                type="password"
+              />
+            );
           }}
         />
       </Form.Group>
@@ -75,17 +77,19 @@ export const Login = () => {
           control={control}
           name="remember me"
           render={({ field, fieldState }) => {
-            <Form.Check
-              {...field}
-              {...fieldState}
-              error={fieldState.error}
-              label="Remember me"
-            />;
+            return (
+              <Form.Check
+                {...field}
+                {...fieldState}
+                error={fieldState.error}
+                label="Remember me"
+              />
+            );
           }}
         />
       </Form.Group>
 
-      <Button variant="primary" isLoading={formState.isSubmiting} type="submit">
+      <Button variant="primary" type="submit">
         Sign in
       </Button>
 
