@@ -4,7 +4,11 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Button } from "react-bootstrap";
 
-export const Login = () => {
+import axios from "axios";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+
+const Login = () => {
   const schema = yup
     .object({
       email: yup.string().nullable().email().required("Email is required"),
@@ -19,21 +23,69 @@ export const Login = () => {
     })
     .required();
 
-  const { control, handleSubmit } = useForm({
+  const { control } = useForm({
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (values) => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        alert(JSON.stringify(values, null, 2));
-        resolve();
-      }, 1000);
-    });
+  const apiUrl = "http://localhost:3005/api";
+
+  axios.interceptors.request.use(
+    (config) => {
+      const { origin } = new URL(config.url);
+
+      const allowedOrigins = [apiUrl];
+
+      const token = localStorage.getItem("token");
+
+      if (allowedOrigins.includes(origin)) {
+        config.headers.authorization = `Bearer ${token}`;
+      }
+      return config;
+    },
+    (error) => {
+      return Promise.reject(error);
+    }
+  );
+
+  const storedJwt = localStorage.getItem("token");
+  const [jwt, setJwt] = useState(storedJwt || null);
+
+  const [loginData, setLoginData] = useState({
+    email: "",
+    password: "",
+  });
+
+  // POST
+  const getJwt = async (value) => {
+    const postData = {
+      email: value.email, // input from form field username
+      password: value.password, // input from form field password
+    };
+
+    const res = await axios.post(`${apiUrl}/auth`, postData);
+
+    if (res.status === 200) {
+      localStorage.setItem("token", res.data?.token);
+
+      setJwt(res.data?.token);
+    }
   };
 
+  const handleChange = (e) => {
+    e.persist();
+    setLoginData((prevValue) => ({
+      ...prevValue,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    getJwt(loginData);
+  }
+
   return (
-    <Form onSubmit={handleSubmit(onSubmit)}>
+    <Form>
       <h1>Log in</h1>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Email</Form.Label>
@@ -47,6 +99,8 @@ export const Login = () => {
                 {...fieldState}
                 error={fieldState.error}
                 placeholder="Enter your Email"
+                value={loginData.email}
+                onChange={handleChange}
               />
             );
           }}
@@ -66,6 +120,8 @@ export const Login = () => {
                 error={fieldState.error}
                 placeholder="Enter your Password"
                 type="password"
+                value={loginData.password}
+                onChange={handleChange}
               />
             );
           }}
@@ -88,12 +144,18 @@ export const Login = () => {
           }}
         />
       </Form.Group>
+      <div className="d-grid gap-2">
+        <Button type="submit" variant="dark" size="lg" onClick={handleSubmit}>
+          Sign in
+        </Button>
+      </div>
 
-      <Button variant="primary" type="submit">
-        Sign in
-      </Button>
-
-      <Form.Text>Forgot password?</Form.Text>
+      <Form.Group className="text-center">
+        <Form.Text>
+          Don't have an account?
+          <Link to="/register"> Create an account!</Link>
+        </Form.Text>
+      </Form.Group>
     </Form>
   );
 };
