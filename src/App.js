@@ -1,16 +1,16 @@
 import "./App.css";
-//import { AppRoutes } from "./Routes";
-import { Login } from "./components/organisms/Login";
+import { AppRoutes } from "./Routes";
+import { AddIncome } from "./components/organisms/addIncome";
+import { ListPage } from "./components/organisms/ListPage";
 
 function App() {
   return (
-    <div className="container">
-      <div className="d-flex min-vh-100 justify-content-center align-items-center">
-        {/* <Header /> */}
-        {/* <AppRoutes /> */}
-        <Login />
-      </div>
-    </div>
+    <>
+      <AppRoutes />
+      {/* <Header /> */}
+      {/* <ListPage />
+      <AddIncome /> */}
+    </>
   );
 }
 
