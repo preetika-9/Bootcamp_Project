@@ -1,3 +1,7 @@
+* {
+  text-align: center;
+}
+
 .register-section {
   height: 120vh;
   background: linear-gradient(
