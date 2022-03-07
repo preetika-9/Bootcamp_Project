@@ -31,6 +31,7 @@ const Login = () => {
   const submitHandler = (values) => {
     const data = { ...values, active: true };
     dispatch(LoginAction(data));
+    console.log(data);
   };
 
   return (
@@ -43,6 +44,7 @@ const Login = () => {
               <Controller
                 name="email"
                 control={control}
+                defaultValue={""}
                 render={({ field, fieldState }) => {
                   return (
                     <InputField
@@ -60,6 +62,7 @@ const Login = () => {
               <Controller
                 name="password"
                 control={control}
+                defaultValue={""}
                 render={({ field, fieldState }) => {
                   return (
                     <InputField
