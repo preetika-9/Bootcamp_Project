@@ -8,7 +8,7 @@ function App() {
   return (
     <>
       <Header />
-      <ListPage />
+      {/* <ListPage /> */}
       <AddIncome />
     </>
   );
