@@ -2,7 +2,7 @@ import React from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { FormDatePicker } from "../../molecules";
-import InputField from "../../molecules/Inputfield/inputField";
+import InputField from "../../molecules/InputField/InputField";
 import { saveIncome } from "./action";
 
 const AddIncome = () => {
