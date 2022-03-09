@@ -1,6 +1,6 @@
 import axios from "axios";
-import { apiUrl } from "../utils";
-export const LoginAction = (payload) => async (dispatch) => {
+import { apiUrl } from "../../utils";
+const LoginAction = (payload) => async (dispatch) => {
   try {
     dispatch({ type: "LOGIN_FETCHING_ATTEMPT" });
 
@@ -11,3 +11,5 @@ export const LoginAction = (payload) => async (dispatch) => {
     dispatch({ type: "LOGIN_FETCHING_ERROR", payload: error });
   }
 };
+
+export default LoginAction;

@@ -1,14 +1,20 @@
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
-//import { FormDatePicker } from "../../molecules";
-import { InputField } from "../molecules/InputField";
+import { useDispatch } from "react-redux";
+import { FormDatePicker } from "../../molecules";
+import InputField from "../../molecules/InputField/InputField";
+//import { saveExpenses } from "./action";
 
 const AddExpenses = () => {
   const { control, handleSubmit } = useForm();
-  const submitHandler = () => {};
+  const dispatch = useDispatch();
+  const submitHandler = (payload) => {
+    console.log(payload);
+    dispatch(saveExpenses(payload));
+  };
   return (
     <>
-      <h1>Add Expenses</h1>
+      <h1>Add Income</h1>
       <form onSubmit={handleSubmit(submitHandler)}>
         <Controller
           name="title"
@@ -47,16 +53,19 @@ const AddExpenses = () => {
           control={control}
           render={({ field, fieldState }) => {
             return (
-              <InputField
+              <FormDatePicker
                 {...field}
                 {...fieldState}
                 error={fieldState.error}
-                label={"Date of income"}
+                label={"Date of expenses"}
                 placeholder={"Select  date of expenses."}
               />
             );
           }}
         />
+        <button type="submit" className="btn btn-dark">
+          Submit
+        </button>
       </form>
     </>
   );

@@ -1,15 +1,17 @@
 import React from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import PropTypes from "prop-types";
+
 const FormDatePicker = (props) => {
   const {
     label,
-    placeholder,
-    name,
+    // placeholder,
+    // name,
     value,
     onChange,
     error,
-    helperText,
+    // helperText,
     ...rest
   } = props;
   return (
@@ -31,3 +33,22 @@ const FormDatePicker = (props) => {
 };
 
 export default FormDatePicker;
+
+FormDatePicker.propTypes = {
+  label: PropTypes.string,
+  name: PropTypes.string,
+  type: PropTypes.string,
+  value: PropTypes.string,
+  onChange: PropTypes.func,
+  placeholder: PropTypes.string,
+  error: PropTypes.string,
+};
+FormDatePicker.defaultProps = {
+  label: "",
+  name: "",
+  type: "",
+  value: "",
+  onChange: () => {},
+  placeholder: "",
+  error: "",
+};

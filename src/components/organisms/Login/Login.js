@@ -2,6 +2,7 @@ import { useForm, Controller } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { InputField } from "../../molecules";
+import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { LoginAction } from "../../../action/LoginAction";
@@ -82,16 +83,15 @@ const Login = () => {
                   Login
                 </button>
               </div>
-
-              <div>
-                <p>
-                  Not a member{" "}
-                  <Link onClick={goToRegister} to="./register">
-                    Create an account
-                  </Link>
-                </p>
-              </div>
             </form>
+            <div>
+              <p>
+                Not a member{" "}
+                <Link onClick={goToRegister} to="./register">
+                  Create an account
+                </Link>
+              </p>
+            </div>
           </div>
         </div>
       </div>
