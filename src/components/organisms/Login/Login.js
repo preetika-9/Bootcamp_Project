@@ -24,7 +24,7 @@ const Login = () => {
 
   const navigate = useNavigate();
   const goToRegister = () => {
-    navigate("/register");
+    navigate("/listpage");
   };
 
   const dispatch = useDispatch();

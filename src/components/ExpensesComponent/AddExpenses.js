@@ -4,7 +4,7 @@ import { Controller, useForm } from "react-hook-form";
 import { InputField } from "../molecules/InputField";
 
 const AddExpenses = () => {
-  const { control, handleSubmit, formState } = useForm();
+  const { control, handleSubmit } = useForm();
   const submitHandler = () => {};
   return (
     <>
