@@ -1,7 +1,7 @@
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
 import { FormDatePicker } from "../../molecules";
-import InputField from "../../molecules/InputField/inputField";
+import InputField from "../../molecules/InputField/InputField";
 
 const AddIncome = () => {
   const { control, handleSubmit, formState } = useForm();
