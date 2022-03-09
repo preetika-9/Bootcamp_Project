@@ -25,7 +25,7 @@ const Login = () => {
 
   const navigate = useNavigate();
   const goToRegister = () => {
-    navigate("/listpage");
+    navigate("/register");
   };
 
   const dispatch = useDispatch();
@@ -33,6 +33,7 @@ const Login = () => {
     const data = { ...values, active: true };
     dispatch(LoginAction(data));
     console.log(data);
+    navigate("/listpage");
   };
 
   return (
@@ -82,16 +83,15 @@ const Login = () => {
                   Login
                 </button>
               </div>
-
-              <div>
-                <p>
-                  Not a member{" "}
-                  <Link onClick={goToRegister} to="./register">
-                    Create an account
-                  </Link>
-                </p>
-              </div>
             </form>
+            <div>
+              <p>
+                Not a member{" "}
+                <Link onClick={goToRegister} to="./register">
+                  Create an account
+                </Link>
+              </p>
+            </div>
           </div>
         </div>
       </div>
