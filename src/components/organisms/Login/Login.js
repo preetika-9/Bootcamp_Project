@@ -32,6 +32,7 @@ const Login = () => {
     const data = { ...values, active: true };
     dispatch(LoginAction(data));
     console.log(data);
+    navigate("/listpage");
   };
 
   return (
