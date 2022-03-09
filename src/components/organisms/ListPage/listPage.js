@@ -1,5 +1,6 @@
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+
 import { listIncomeAction, listExpenseAction } from "./action";
 
 const ListPage = () => {
@@ -10,7 +11,7 @@ const ListPage = () => {
   // useEffect(() => {
   //   dispatch(listAction())
   // }, [])
-  const { isError, isFetching, response } = income;
+
   return (
     <>
       <div className="header">

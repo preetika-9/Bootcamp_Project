@@ -1,3 +1,4 @@
+import React from "react";
 import { InputField, FormDatePicker } from "../../molecules";
 import { useForm, Controller } from "react-hook-form";
 import * as yup from "yup";
@@ -16,17 +17,15 @@ const Register = () => {
         .date()
         .min(new Date(2010, 0, 1))
         .required("DateOfBirth is required."),
-      password: yup
-        .string()
-        .required("Please Enter your password")
-        .matches(
-          /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
-          "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
-        ),
+      password: yup.string().required("Please Enter your password"),
+      // .matches(
+      //   /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
+      //   "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
+      // ),
     })
     .required();
 
-  const { control, handleSubmit, formState } = useForm({
+  const { control, handleSubmit } = useForm({
     resolver: yupResolver(schema),
   });
   const navigate = useNavigate();

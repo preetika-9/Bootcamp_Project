@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const listIncomeAction = (payload) => async (dispatch) => {
+export const listIncomeAction = () => async (dispatch) => {
   try {
     dispatch({ type: "LIST_FETCHING_ATTEMPT" });
 
@@ -20,7 +20,7 @@ export const listIncomeAction = (payload) => async (dispatch) => {
   }
 };
 
-export const listExpenseAction = (payload) => async (dispatch) => {
+export const listExpenseAction = () => async (dispatch) => {
   try {
     dispatch({ type: "LIST_FETCHING_ATTEMPT" });
 
