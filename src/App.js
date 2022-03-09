@@ -13,8 +13,12 @@ import Header from "./Routes/Header/Header";
 function App() {
   return (
     <>
+      {/* <AppRoutes /> */}
+      {/* <Header /> */}
+
       <AppRoutes />
       <Header />
+
       <ListPage />
       <AddIncome />
     </>
