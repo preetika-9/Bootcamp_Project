@@ -2,6 +2,7 @@ import { useForm, Controller } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { InputField } from "../../molecules";
+import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { LoginAction } from "../../../action/LoginAction";
@@ -24,7 +25,7 @@ const Login = () => {
 
   const navigate = useNavigate();
   const goToRegister = () => {
-    navigate("/register");
+    navigate("/listpage");
   };
 
   const dispatch = useDispatch();

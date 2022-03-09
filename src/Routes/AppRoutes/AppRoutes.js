@@ -9,8 +9,12 @@ function AppRoute() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+
+        
+
         <Route path="/expenses" element={<AddExpenses />} />
         <Route path="/listpage" element={<ListPage />} />
+
       </Routes>
     </>
   );
