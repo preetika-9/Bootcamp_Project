@@ -13,11 +13,13 @@ const ListPage = () => {
   // useEffect(() => {
   //   dispatch(listAction())
   // }, [])
+
   //const { isError, isFetching, response } = income;
 
   const onDelete = () => {
     dispatch(removeIncome(income.id));
   };
+
   return (
     <>
       <div className="header">

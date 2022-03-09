@@ -1,6 +1,7 @@
 import axios from "axios";
 import { deleteIncome } from "../addIncome/api";
 
+
 export const incomeDeleted = (incomeId) => ({
   type: "income/incomeDeleted",
   payload: incomeId,
