@@ -6,10 +6,10 @@ import { ListPage } from "./components/organisms/ListPage";
 function App() {
   return (
     <>
-      <AppRoutes />
+      {/* <AppRoutes /> */}
       {/* <Header /> */}
-      {/* <ListPage />
-      <AddIncome /> */}
+      <ListPage />
+      <AddIncome />
     </>
   );
 }
