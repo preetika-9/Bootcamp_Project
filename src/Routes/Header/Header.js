@@ -1,10 +1,12 @@
+import React from "react";
 import { Link } from "react-router-dom";
 
 function Header() {
   return (
     <>
-      <Link to="/Login">Login</Link>
-      <Link to="/Register">Register</Link>
+      <Link to="/login">Login</Link>
+      <Link to="/register">Register</Link>
+      <Link to="/listpage">ListPage</Link>
     </>
   );
 }
