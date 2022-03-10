@@ -1,15 +1,17 @@
 import { apiUrl } from "../../utils";
+import axios from "axios";
 
 export const expensesAdded = (data) => ({
-  type: "Add_Expenses, payload: data",
+  type: "Add_Expenses",
+  payload: data,
 });
 
 export function saveExpenses(payload) {
   return async function saveExpensesThunk(dispatch) {
-    const Response = await axios.post(`${apiUrl}/api/expenses`, payload);
+    const response = await axios.post(`${apiUrl}/api/expenses`, payload);
     dispatch(
       expensesAdded({
-        ...Response.data,
+        ...response.data,
       })
     );
   };

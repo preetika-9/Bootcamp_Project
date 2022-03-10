@@ -3,7 +3,7 @@ import { InputField, FormDatePicker } from "../../molecules";
 import { useForm, Controller } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { registerAction } from "./action";
 const Register = () => {
@@ -30,6 +30,7 @@ const Register = () => {
   });
   const navigate = useNavigate();
   const backToLogin = () => {
+    localStorage.removeItem("token");
     navigate("/login");
   };
   const dispatch = useDispatch();
@@ -157,18 +158,20 @@ const Register = () => {
                     );
                   }}
                 /> */}
-                <button type="submit" className="btn btn-dark">
+                <button type="submit" className="btn btn-dark register-btn">
                   Submit
                 </button>
               </form>
               <div className="login-back">
-                <button
+                {/* <button
                   type="button"
                   className="btn btn-dark"
                   onClick={backToLogin}
                 >
                   Back To Login
-                </button>
+                </button> */}
+
+                <Link onClick={backToLogin}>Back To Login</Link>
               </div>
             </div>
           </div>
