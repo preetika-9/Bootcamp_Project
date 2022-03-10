@@ -2,6 +2,7 @@ import "./App.css";
 import React from "react";
 
 import { AppRoutes } from "./Routes";
+
 // import { AddIncome } from "./components/organisms/addIncome";
 // import { ListPage } from "./components/organisms/ListPage";
 // import Header from "./Routes/Header/Header";
@@ -10,11 +11,8 @@ import { AppRoutes } from "./Routes";
 function App() {
   return (
     <>
-      {/* <Login />
       <AppRoutes />
-      <Header />*/}
-      {/* <AppRoutes /> */}
-      {/* <Header /> */}
+      {/*  <Login />
 
       <AppRoutes />
       {/* <Header />
