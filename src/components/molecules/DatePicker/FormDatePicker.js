@@ -11,7 +11,7 @@ const FormDatePicker = (props) => {
     value,
     onChange,
     error,
-    //helperText,
+
     ...rest
   } = props;
   return (

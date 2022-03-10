@@ -2,6 +2,8 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { listIncomeAction, listExpenseAction } from "./action";
+import { removeIncome } from "./action";
+import { Button, Table } from "react-bootstrap";
 
 const ListPage = () => {
   const dispatch = useDispatch();
@@ -11,6 +13,12 @@ const ListPage = () => {
   // useEffect(() => {
   //   dispatch(listAction())
   // }, [])
+
+  //const { isError, isFetching, response } = income;
+
+  const onDelete = () => {
+    dispatch(removeIncome(income.id));
+  };
 
   return (
     <>
@@ -22,27 +30,37 @@ const ListPage = () => {
           <button onClick={() => dispatch(listIncomeAction())}>Get Data</button>
         </div>
       </div>
-      <tbody>
-        <tr>
-          <th>ID</th>
-          <th>Title</th>
-          <th>Amount</th>
-          <th>Date</th>
-        </tr>
-        {Array.isArray(income?.response?.incomes) &&
-        income?.response?.incomes.length ? (
-          income?.response?.incomes.map((item, index) => (
-            <tr key={index}>
-              <td>{item.id}</td>
-              <td>{item.title}</td>
-              <td>{item.amount}</td>
-              <td>{item.date}</td>
-            </tr>
-          ))
-        ) : (
-          <h1>Empty</h1>
-        )}
-      </tbody>
+
+      <Table striped bordered hover>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Amount</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          {Array.isArray(income?.response?.incomes) &&
+          income?.response?.incomes.length ? (
+            income?.response?.incomes.map((item, index) => (
+              <tr key={index}>
+                <td>{item.id}</td>
+                <td>{item.title}</td>
+                <td>{item.amount}</td>
+                <td>{item.date}</td>
+                <td>
+                  <Button variant="danger" onClick={onDelete}>
+                    Delete
+                  </Button>
+                </td>
+              </tr>
+            ))
+          ) : (
+            <h1>Empty</h1>
+          )}
+        </tbody>
+      </Table>
 
       <div className="header">
         <h1 className="Header-title">Expense Data</h1>
@@ -54,28 +72,36 @@ const ListPage = () => {
           </button>
         </div>
       </div>
-
-      <tbody>
-        <tr>
-          <th>ID</th>
-          <th>Title</th>
-          <th>Amount</th>
-          <th>Date</th>
-        </tr>
-        {Array.isArray(expense?.response?.expenses) &&
-        expense?.response?.expenses.length ? (
-          expense?.response?.expenses.map((item, index) => (
-            <tr key={index}>
-              <td>{item.id}</td>
-              <td>{item.title}</td>
-              <td>{item.amount}</td>
-              <td>{item.date}</td>
-            </tr>
-          ))
-        ) : (
-          <h1>Empty</h1>
-        )}
-      </tbody>
+      <Table striped bordered hover>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Amount</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          {Array.isArray(expense?.response?.expenses) &&
+          expense?.response?.expenses.length ? (
+            expense?.response?.expenses.map((item, index) => (
+              <tr key={index}>
+                <td>{item.id}</td>
+                <td>{item.title}</td>
+                <td>{item.amount}</td>
+                <td>{item.date}</td>
+                <td>
+                  <Button variant="danger" onClick={onDelete}>
+                    Delete
+                  </Button>
+                </td>
+              </tr>
+            ))
+          ) : (
+            <h1>Empty</h1>
+          )}
+        </tbody>
+      </Table>
     </>
   );
 };

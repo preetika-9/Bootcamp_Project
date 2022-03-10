@@ -12,6 +12,15 @@ export default function incomeReducer(state = initialState, action) {
         incomes: [...state.incomes, data],
       };
     }
+
+    case "income/incomeDeleted": {
+      return {
+        ...state,
+        incomes: state.incomes.filter(
+          (item) => Number(item.id) !== Number(action.payload)
+        ),
+      };
+    }
     default:
       return state;
   }
