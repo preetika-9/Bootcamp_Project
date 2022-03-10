@@ -1,6 +1,7 @@
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { FormDatePicker } from "../../molecules";
 import InputField from "../../molecules/InputField/InputField";
 import { saveIncome } from "./action";
@@ -10,8 +11,12 @@ const AddIncome = () => {
   const { control, handleSubmit } = useForm();
   const dispatch = useDispatch();
   const submitHandler = (payload) => {
-    console.log(payload);
+    //console.log(payload);
     dispatch(saveIncome(payload));
+  };
+  const navigate = useNavigate();
+  const backToList = () => {
+    navigate("/listpage");
   };
   return (
     <>
@@ -78,6 +83,9 @@ const AddIncome = () => {
           Submit
         </button>
       </form>
+      <button onClick={backToList} className="btn btn-dark  mt-30">
+        List Income
+      </button>
     </>
   );
 };

@@ -8,6 +8,8 @@ export const incomeDeleted = (incomeId) => ({
 
 export const listIncomeAction = () => async (dispatch) => {
   try {
+    const token = localStorage.getItem("token");
+    console.log(token);
     dispatch({ type: "LIST_FETCHING_ATTEMPT" });
 
     const { data } = await axios.get(
@@ -15,8 +17,7 @@ export const listIncomeAction = () => async (dispatch) => {
 
       {
         headers: {
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFkbWluIiwiYWRkcmVzcyI6IkxhbGl0cHVyLCBOZXBhbCIsInBob25lIjoiOTg0MTEyMzEyMyIsImVtYWlsIjoiYWRtaW5AZ3VyenUuY29tIiwiYWN0aXZlIjoxLCJkYXRlX29mX2JpcnRoIjoiMjAyMi0wMy0wMlQyMDo1OToyOC4xMTFaIiwiaWF0IjoxNjQ2NzM2MzY5LCJleHAiOjE2NDY4MjI3Njl9.BTdrEKy1LD6hfRu0UM2yOxz-sht1ux-3n-UrLWQJmBM",
+          Authorization: "Bearer " + token,
         },
       }
     );
@@ -28,6 +29,7 @@ export const listIncomeAction = () => async (dispatch) => {
 
 export const listExpenseAction = () => async (dispatch) => {
   try {
+    const token = localStorage.getItem("token");
     dispatch({ type: "LIST_FETCHING_ATTEMPT" });
 
     const { data } = await axios.get(
@@ -35,8 +37,7 @@ export const listExpenseAction = () => async (dispatch) => {
 
       {
         headers: {
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFkbWluIiwiYWRkcmVzcyI6IkxhbGl0cHVyLCBOZXBhbCIsInBob25lIjoiOTg0MTEyMzEyMyIsImVtYWlsIjoiYWRtaW5AZ3VyenUuY29tIiwiYWN0aXZlIjoxLCJkYXRlX29mX2JpcnRoIjoiMjAyMi0wMy0wMlQyMDo1OToyOC4xMTFaIiwiaWF0IjoxNjQ2NzM2MzY5LCJleHAiOjE2NDY4MjI3Njl9.BTdrEKy1LD6hfRu0UM2yOxz-sht1ux-3n-UrLWQJmBM",
+          Authorization: "Bearer " + token,
         },
       }
     );
@@ -46,9 +47,32 @@ export const listExpenseAction = () => async (dispatch) => {
   }
 };
 
+
 export function removeIncome(id) {
   return async function (dispatch) {
+
+export const removeIncome = (id) => async (dispatch) => {
+  try {
+
     const response = await deleteIncome(id);
-    dispatch(incomeDeleted(response.income));
-  };
-}
+    console.log(response.income, "response id");
+    dispatch({
+      type: "income/incomeDeleted",
+      payload: response.income,
+    });
+  } catch (error) {
+    dispatch({ type: "LIST_FETCHING_ERROR", payload: error });
+  }
+};
+
+// export function removeIncome(id) {
+//   return async function (dispatch, getState) {
+//     console.log(id, "delete id");
+//     const response = await deleteIncome(id);
+//     console.log(response.income, "response id");
+//     dispatch({
+//       type: "income/incomeDeleted",
+//       payload: response.income,
+//     });
+//   };
+// }

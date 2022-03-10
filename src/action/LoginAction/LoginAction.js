@@ -5,6 +5,7 @@ const LoginAction = (payload) => async (dispatch) => {
     dispatch({ type: "LOGIN_FETCHING_ATTEMPT" });
 
     const { data } = await axios.post(`${apiUrl}/api/auth`, payload);
+    localStorage.setItem("token", data.token);
 
     dispatch({ type: "LOGIN_FETCHING_SUCCESS", payload: data });
   } catch (error) {

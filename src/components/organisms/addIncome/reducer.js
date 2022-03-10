@@ -13,14 +13,14 @@ export default function incomeReducer(state = initialState, action) {
       };
     }
 
-    case "income/incomeDeleted": {
+    case "income/incomeDeleted":
+      //console.log(action.payload, "delete console");
       return {
         ...state,
         incomes: state.incomes.filter(
           (item) => Number(item.id) !== Number(action.payload)
         ),
       };
-    }
     default:
       return state;
   }

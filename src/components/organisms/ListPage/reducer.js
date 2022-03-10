@@ -23,6 +23,30 @@ const listReducer = (state = initialState, action) => {
         isFetching: false,
         isError: true,
       };
+
+    case "Add_Income": {
+      const data = action.payload;
+      return {
+        ...state,
+        response: [...state.response.incomes, data],
+      };
+    }
+
+    case "income/incomeDeleted":
+      // console.log(
+      //   state.response.incomes.filter(
+      //     (item) => Number(item.id) !== Number(action.payload)
+      //   ),
+      //   "delete console"
+      // );
+      return {
+        ...state,
+        response: {
+          incomes: state.response.incomes.filter(
+            (item) => Number(item.id) !== Number(action.payload)
+          ),
+        },
+      };
     default:
       return state;
   }
