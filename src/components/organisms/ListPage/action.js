@@ -47,13 +47,8 @@ export const listExpenseAction = () => async (dispatch) => {
   }
 };
 
-
-export function removeIncome(id) {
-  return async function (dispatch) {
-
 export const removeIncome = (id) => async (dispatch) => {
   try {
-
     const response = await deleteIncome(id);
     console.log(response.income, "response id");
     dispatch({
