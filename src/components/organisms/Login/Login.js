@@ -103,14 +103,6 @@ const Login = () => {
                 </p>
               </Form.Text>
             </form>
-            <div>
-              <p>
-                Not a member{" "}
-                <Link onClick={goToRegister} to="./register">
-                  Create an account
-                </Link>
-              </p>
-            </div>
           </div>
         </div>
       </div>

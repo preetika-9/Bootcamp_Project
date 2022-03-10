@@ -1,7 +1,6 @@
 import axios from "axios";
 import { deleteIncome } from "../addIncome/api";
 
-
 export const incomeDeleted = (incomeId) => ({
   type: "income/incomeDeleted",
   payload: incomeId,
@@ -48,7 +47,7 @@ export const listExpenseAction = () => async (dispatch) => {
 };
 
 export function removeIncome(id) {
-  return async function (dispatch, getState) {
+  return async function (dispatch) {
     const response = await deleteIncome(id);
     dispatch(incomeDeleted(response.income));
   };
