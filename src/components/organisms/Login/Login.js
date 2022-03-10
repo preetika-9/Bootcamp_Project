@@ -6,6 +6,7 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { LoginAction } from "../../../action/LoginAction";
+import { Form, Button } from "react-bootstrap";
 
 const Login = () => {
   const schema = yup
@@ -37,61 +38,71 @@ const Login = () => {
   };
 
   return (
-    <div className="login-section">
-      <div className="container">
-        <div className="login-box">
-          <div className="login-inner">
+    <div className="login-section ">
+      <div className="container ">
+        <div className="login-box ">
+          <div className="login-inner ">
             <h1 className="login-title text-center">Log in</h1>
             <form onSubmit={handleSubmit(submitHandler)}>
-              <Controller
-                name="email"
-                control={control}
-                defaultValue={""}
-                render={({ field, fieldState }) => {
-                  return (
-                    <InputField
-                      {...field}
-                      {...fieldState}
-                      error={fieldState.error}
-                      type="text"
-                      placeholder="Enter your email"
-                      label="Email"
-                    />
-                  );
-                }}
-              />
+              <Form.Group>
+                <Form.Label>
+                  <Controller
+                    name="email"
+                    control={control}
+                    defaultValue={""}
+                    render={({ field, fieldState }) => {
+                      return (
+                        <InputField
+                          {...field}
+                          {...fieldState}
+                          error={fieldState.error}
+                          type="text"
+                          placeholder="Enter your email"
+                          label="Email"
+                        />
+                      );
+                    }}
+                  />
+                </Form.Label>
+              </Form.Group>
 
-              <Controller
-                name="password"
-                control={control}
-                defaultValue={""}
-                render={({ field, fieldState }) => {
-                  return (
-                    <InputField
-                      {...field}
-                      {...fieldState}
-                      error={fieldState.error}
-                      type="password"
-                      placeholder="Enter your password"
-                      label="Password"
-                    />
-                  );
-                }}
-              />
-              <div className="d-grid ">
-                <button className="btn btn-dark " type="submit">
+              <Form.Group>
+                <Form.Label>
+                  <Controller
+                    name="password"
+                    control={control}
+                    defaultValue={""}
+                    render={({ field, fieldState }) => {
+                      return (
+                        <InputField
+                          {...field}
+                          {...fieldState}
+                          error={fieldState.error}
+                          type="password"
+                          placeholder="Enter your password"
+                          label="Password"
+                        />
+                      );
+                    }}
+                  />
+                </Form.Label>
+              </Form.Group>
+
+              <div>
+                <Button variant="dark" type="submit" className="login-btn">
                   Login
-                </button>
+                </Button>
               </div>
+
+              <Form.Text>
+                <p>
+                  Not a member{" "}
+                  <Link onClick={goToRegister} to="./register">
+                    Register Here
+                  </Link>
+                </p>
+              </Form.Text>
             </form>
-            <div>
-              <p>
-                Not a member{" "}
-                <Link onClick={goToRegister} to="./register">
-                  Create an account
-                </Link>
-              </p>
-            </div>
           </div>
         </div>
       </div>

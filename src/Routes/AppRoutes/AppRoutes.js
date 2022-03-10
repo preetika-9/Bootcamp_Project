@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Routes, Route } from "react-router-dom";
-import AddExpenses from "../../components/ExpensesComponent/AddExpenses";
+import AddExpenses from "../../components/organisms/AddExpenses";
 import { Login, Register } from "../../components/organisms";
 import AddIncome from "../../components/organisms/addIncome/addIncome";
 import { ListPage } from "../../components/organisms/ListPage";
@@ -11,7 +11,9 @@ function AppRoute() {
         <Route path="/" element={<Login />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+
         <Route path="/income" element={<AddIncome />} />
+
         <Route path="/expenses" element={<AddExpenses />} />
         <Route path="/listpage" element={<ListPage />} />
       </Routes>

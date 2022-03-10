@@ -13,34 +13,47 @@ code {
 }
 * {
   text-align: center;
+  color: #000;
 }
 
-.register-section {
-  height: 120vh;
-  background: linear-gradient(
-    90deg,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(25, 28, 208, 0.958420868347339) 35%,
-    rgba(0, 212, 255, 1) 100%
-  );
+.register-section,
+.login-section {
+  height: 100vh;
+  background: url(./utils/images/Background.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.register-box {
+.register-box,
+.login-box {
   display: flex;
   justify-content: center;
   align-items: center;
   /* margin-top: 221px; */
-  background-color: #fff;
-  width: 60%;
-  border-radius: 10px;
-  padding: 50px 20px;
+  background-color: rgba(255, 255, 255, 0.479);
+  /* width: 60%; */
+  border-radius: 50px;
+  padding: 50px 0px;
+  margin: 0px 300px;
+}
+
+.login-box {
+  margin: 0px 400px;
 }
 
 .error-message {
   color: red;
   font-size: 16px;
 }
-.login-back {
-  float: right;
-  margin-top: -38px;
+
+.login-btn {
+  margin-bottom: 20px;
+}
+
+.register-btn {
+  margin-bottom: 10px;
 }

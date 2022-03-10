@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { FormDatePicker } from "../../molecules";
 import InputField from "../../molecules/InputField/InputField";
 import { saveIncome } from "./action";
+import { Form } from "react-bootstrap";
 
 const AddIncome = () => {
   const { control, handleSubmit } = useForm();
@@ -21,38 +22,48 @@ const AddIncome = () => {
     <>
       <h1>Add Income</h1>
       <form onSubmit={handleSubmit(submitHandler)}>
-        <Controller
-          name="title"
-          control={control}
-          render={({ field, fieldState }) => {
-            return (
-              <InputField
-                {...field}
-                {...fieldState}
-                error={fieldState.error}
-                type="text"
-                placeholder="Enter title of income"
-                label="Income Title"
-              />
-            );
-          }}
-        />
-        <Controller
-          name="amount"
-          control={control}
-          render={({ field, fieldState }) => {
-            return (
-              <InputField
-                {...field}
-                {...fieldState}
-                error={fieldState.error}
-                type="number"
-                placeholder="Enter amount"
-                label="Income Amount"
-              />
-            );
-          }}
-        />
+        <Form.Group>
+          <Form.Label>
+            <Controller
+              name="title"
+              control={control}
+              render={({ field, fieldState }) => {
+                return (
+                  <InputField
+                    {...field}
+                    {...fieldState}
+                    error={fieldState.error}
+                    type="text"
+                    placeholder="Enter title of income"
+                    label="Income Title"
+                  />
+                );
+              }}
+            />
+          </Form.Label>
+        </Form.Group>
+
+        <Form.Group>
+          <Form.Label>
+            <Controller
+              name="amount"
+              control={control}
+              render={({ field, fieldState }) => {
+                return (
+                  <InputField
+                    {...field}
+                    {...fieldState}
+                    error={fieldState.error}
+                    type="number"
+                    placeholder="Enter amount"
+                    label="Income Amount"
+                  />
+                );
+              }}
+            />
+          </Form.Label>
+        </Form.Group>
+
         <Controller
           name="date"
           control={control}
