@@ -10,7 +10,7 @@ const AddIncome = () => {
   const { control, handleSubmit } = useForm();
   const dispatch = useDispatch();
   const submitHandler = (payload) => {
-    console.log(payload);
+    //console.log(payload);
     dispatch(saveIncome(payload));
   };
   const navigate = useNavigate();

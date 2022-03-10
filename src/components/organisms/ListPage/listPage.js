@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import { listIncomeAction, listExpenseAction } from "./action";
 import { removeIncome } from "./action";
@@ -10,24 +11,32 @@ const ListPage = () => {
   const income = useSelector((state) => state.incomeList);
   const expense = useSelector((state) => state.expenseList);
   console.log(income);
-  // useEffect(() => {
-  //   dispatch(listAction())
-  // }, [])
+  useEffect(() => {
+    dispatch(listIncomeAction());
+  }, []);
   //const { isError, isFetching, response } = income;
-  const { isError, isFetching, response } = income;
-  const onDelete = () => {
-    dispatch(removeIncome(income.id));
+
+  const onDelete = (id) => {
+    dispatch(removeIncome(id));
   };
+  const navigate = useNavigate();
+  const onAdd = () => {
+    navigate("/income");
+  };
+  console.log(income?.response?.incomes, "listpage");
   return (
     <>
       <div className="header">
         <h1 className="Header-title">Income Data</h1>
+        <Button variant="primary" onClick={onAdd}>
+          Add Income
+        </Button>
       </div>
-      <div className="data-section">
+      {/* <div className="data-section">
         <div className="container">
           <button onClick={() => dispatch(listIncomeAction())}>Get Data</button>
         </div>
-      </div>
+      </div> */}
 
       <Table striped bordered hover>
         <thead>
@@ -40,7 +49,7 @@ const ListPage = () => {
         </thead>
         <tbody>
           {Array.isArray(income?.response?.incomes) &&
-          income?.response?.incomes.length ? (
+          income?.response?.incomes.length > 0 ? (
             income?.response?.incomes.map((item, index) => (
               <tr key={index}>
                 <td>{item.id}</td>
@@ -48,7 +57,7 @@ const ListPage = () => {
                 <td>{item.amount}</td>
                 <td>{item.date}</td>
                 <td>
-                  <Button variant="danger" onClick={onDelete}>
+                  <Button variant="danger" onClick={() => onDelete(item.id)}>
                     Delete
                   </Button>
                 </td>
