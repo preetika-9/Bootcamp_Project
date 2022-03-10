@@ -17,7 +17,9 @@ code {
 }
 
 .register-section,
-.login-section {
+.login-section,
+.income-section,
+.expenses-section {
   height: 100vh;
   background: url(./utils/images/Background.jpg);
   background-repeat: no-repeat;
@@ -29,8 +31,10 @@ code {
 }
 
 .register-box,
-.login-box {
-  display: flex;
+.login-box,
+.income-box,
+.expenses-box {
+  /* display: flex; */
   justify-content: center;
   align-items: center;
   /* margin-top: 221px; */
@@ -56,4 +60,12 @@ code {
 
 .register-btn {
   margin-bottom: 10px;
+}
+
+.logout-btn {
+  margin-top: 40px;
+}
+
+.add-income-btn {
+  margin: 20px 0px;
 }

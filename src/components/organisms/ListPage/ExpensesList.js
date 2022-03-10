@@ -2,17 +2,17 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import { listIncomeAction } from "./action";
+import { listExpenseAction } from "./action";
 import { removeIncome } from "./action";
 import { Button, Table } from "react-bootstrap";
 
-const ListPage = () => {
+const ExpensesList = () => {
   const dispatch = useDispatch();
-  const income = useSelector((state) => state.incomeList);
 
-  console.log(income);
+  const expense = useSelector((state) => state.expenseList);
+
   useEffect(() => {
-    dispatch(listIncomeAction());
+    dispatch(listExpenseAction());
   }, []);
   //const { isError, isFetching, response } = income;
 
@@ -21,36 +21,25 @@ const ListPage = () => {
   };
   const navigate = useNavigate();
   const onAdd = () => {
-    navigate("/income");
+    navigate("/expenses");
   };
 
-  const toExpenses = () => {
-    navigate("/listexpenses");
+  const toIncome = () => {
+    navigate("/listpage");
   };
 
   const logout = () => {
     localStorage.removeItem("token");
     navigate("/login");
   };
-
-  console.log(income?.response?.incomes, "listpage");
   return (
     <>
       <div className="header">
-        <h1 className="Header-title">Income Data</h1>
-        <div className="add-income-btn">
-          <Button variant="primary" onClick={onAdd}>
-            Add Income
-          </Button>
-        </div>
+        <h1 className="Header-title">Expense Data</h1>
+        <Button variant="primary" onClick={onAdd}>
+          Add Expenses
+        </Button>
       </div>
-
-      {/* <div className="data-section">
-        <div className="container">
-          <button onClick={() => dispatch(listIncomeAction())}>Get Data</button>
-        </div>
-      </div> */}
-
       <Table striped bordered hover>
         <thead>
           <tr>
@@ -61,9 +50,9 @@ const ListPage = () => {
           </tr>
         </thead>
         <tbody>
-          {Array.isArray(income?.response?.incomes) &&
-          income?.response?.incomes.length > 0 ? (
-            income?.response?.incomes.map((item, index) => (
+          {Array.isArray(expense?.response?.expenses) &&
+          expense?.response?.expenses.length ? (
+            expense?.response?.expenses.map((item, index) => (
               <tr key={index}>
                 <td>{item.id}</td>
                 <td>{item.title}</td>
@@ -71,7 +60,7 @@ const ListPage = () => {
                 <td>{item.date}</td>
                 <td>
                   <Button variant="primary"> Edit</Button>{" "}
-                  <Button variant="danger" onClick={() => onDelete(item.id)}>
+                  <Button variant="danger" onClick={onDelete}>
                     Delete
                   </Button>
                 </td>
@@ -84,22 +73,16 @@ const ListPage = () => {
       </Table>
 
       <div className="expenses-list-btn">
-        <Button variant="danger" onClick={toExpenses}>
-          Go To Expenses List
+        <Button variant="danger" onClick={toIncome}>
+          Go To Income List
         </Button>
       </div>
-      <div className="logout-btn">
-        <Button
-          variant="primary"
-          onClick={logout}
-          className="log-out-btn"
-          size="lg"
-        >
-          LogOut
-        </Button>
-      </div>
+
+      <Button variant="primary" onClick={logout}>
+        LogOut
+      </Button>
     </>
   );
 };
 
-export default ListPage;
+export default ExpensesList;
