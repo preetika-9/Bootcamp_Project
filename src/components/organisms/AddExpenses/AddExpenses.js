@@ -2,10 +2,11 @@ import React from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { saveExpenses } from "../../../action/ExpensesAction/ExpensesAction";
+
 import { FormDatePicker } from "../../molecules";
 import InputField from "../../molecules/InputField/InputField";
 import { Form } from "react-bootstrap";
+import { saveExpense } from "./action";
 
 const AddExpenses = () => {
   const { control, handleSubmit } = useForm();
@@ -13,7 +14,7 @@ const AddExpenses = () => {
   const navigate = useNavigate();
   const submitHandler = (payload) => {
     console.log(payload);
-    dispatch(saveExpenses(payload));
+    dispatch(saveExpense(payload));
     navigate("/listexpenses");
   };
   return (

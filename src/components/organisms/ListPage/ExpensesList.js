@@ -2,11 +2,10 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import { listExpenseAction } from "./action";
-import { removeIncome } from "./action";
+import { removeExpense, listExpenseAction } from "./ExpensesListAction";
 import { Button, Table } from "react-bootstrap";
 
-const ExpensesList = () => {
+const ExpenseList = () => {
   const dispatch = useDispatch();
 
   const expense = useSelector((state) => state.expenseList);
@@ -17,14 +16,14 @@ const ExpensesList = () => {
   //const { isError, isFetching, response } = income;
 
   const onDelete = (id) => {
-    dispatch(removeIncome(id));
+    dispatch(removeExpense(id));
   };
   const navigate = useNavigate();
   const onAdd = () => {
     navigate("/expenses");
   };
 
-  const toIncome = () => {
+  const toExpense = () => {
     navigate("/listpage");
   };
 
@@ -36,9 +35,11 @@ const ExpensesList = () => {
     <>
       <div className="header">
         <h1 className="Header-title">Expense Data</h1>
-        <Button variant="primary" onClick={onAdd}>
-          Add Expenses
-        </Button>
+        <div className="add-income-btn">
+          <Button variant="primary" onClick={onAdd}>
+            Add Expenses
+          </Button>
+        </div>
       </div>
       <Table striped bordered hover>
         <thead>
@@ -73,16 +74,22 @@ const ExpensesList = () => {
       </Table>
 
       <div className="expenses-list-btn">
-        <Button variant="danger" onClick={toIncome}>
+        <Button variant="danger" onClick={toExpense}>
           Go To Income List
         </Button>
       </div>
-
-      <Button variant="primary" onClick={logout}>
-        LogOut
-      </Button>
+      <div className="logout-btn">
+        <Button
+          variant="primary"
+          onClick={logout}
+          className="log-out-btn"
+          size="lg"
+        >
+          LogOut
+        </Button>
+      </div>
     </>
   );
 };
 
-export default ExpensesList;
+export default ExpenseList;
