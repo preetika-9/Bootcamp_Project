@@ -1,51 +1,25 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { FormDatePicker } from "../../molecules";
 import InputField from "../../molecules/InputField/InputField";
 import { saveIncome } from "./action";
 import { Form } from "react-bootstrap";
-import { getIncomeById } from "./api";
-//import moment from "moment";
-import { EditIncome } from "./action";
 
-const AddIncome = () => {
-  const { control, handleSubmit, setValue } = useForm();
+const EditIncome = () => {
+  const { control, handleSubmit } = useForm();
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
-  const submitHandler = (payload) => {
-    //console.log(payload);
-    if (params.id) {
-      dispatch(EditIncome());
-    }
-    dispatch(saveIncome(payload));
-    navigate("/listpage");
-  };
-  const params = useParams();
-
-  useEffect(async () => {
-    if (params.id) {
-      try {
-        const response = await getIncomeById(params.id);
-        // const { title, amount } = response;
-        setValue("title", response.title);
-        setValue("amount", response.amount);
-        setValue("date", new Date(response.date));
-        console.log(response);
-      } catch (e) {
-        //navigate("/listpage");
-      }
-    }
-  }, []);
+  const submitHandler = (payload) => {};
 
   return (
     <>
       <div className="income-section ">
         <div className="container ">
           <div className="income-box ">
-            <h1>{params.id ? "Edit" : "Add"} Income</h1>
+            <h1>Add Income</h1>
             <form onSubmit={handleSubmit(submitHandler)}>
               <Form.Group>
                 <Form.Label>

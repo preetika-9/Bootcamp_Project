@@ -18,6 +18,7 @@ function AppRoute() {
         <Route path="/expenses" element={<AddExpenses />} />
         <Route path="/listpage" element={<ListPage />} />
         <Route path="/listexpenses" element={<ExpensesList />} />
+        <Route path="/income/:id" element={<AddIncome />} />
       </Routes>
     </>
   );
