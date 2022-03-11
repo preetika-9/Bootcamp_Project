@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { listIncomeAction } from "./action";
 import { removeIncome } from "./action";
 import { Button, Table } from "react-bootstrap";
+import moment from "moment";
 
 const ListPage = () => {
   const dispatch = useDispatch();
@@ -26,6 +27,10 @@ const ListPage = () => {
 
   const toExpenses = () => {
     navigate("/listexpenses");
+  };
+  const onEdit = (item) => {
+    //console.log(item);
+    navigate(`/income/${item.id}`);
   };
 
   const logout = () => {
@@ -68,9 +73,13 @@ const ListPage = () => {
                 <td>{item.id}</td>
                 <td>{item.title}</td>
                 <td>{item.amount}</td>
-                <td>{item.date}</td>
+                <td>{moment(item.date).format("DD/MM/YYYY")}</td>
+
                 <td>
-                  <Button variant="primary"> Edit</Button>{" "}
+                  <Button variant="primary" onClick={() => onEdit(item)}>
+                    {" "}
+                    Edit
+                  </Button>{" "}
                   <Button variant="danger" onClick={() => onDelete(item.id)}>
                     Delete
                   </Button>

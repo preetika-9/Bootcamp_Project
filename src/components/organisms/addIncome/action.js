@@ -1,5 +1,4 @@
-import { createIncome } from "./api";
-
+import { createIncome, UpdateIncome } from "./api";
 export const incomeAdded = (data) => ({ type: "Add_Income", payload: data });
 
 export function saveIncome(payload) {
@@ -10,5 +9,12 @@ export function saveIncome(payload) {
         ...response.data,
       })
     );
+  };
+}
+
+export function EditIncome(payload) {
+  return async function IncomeEdit() {
+    const response = await UpdateIncome(payload);
+    console.log(response);
   };
 }
