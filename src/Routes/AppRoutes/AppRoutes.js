@@ -1,9 +1,10 @@
 import * as React from "react";
 import { Routes, Route } from "react-router-dom";
 import AddExpenses from "../../components/organisms/AddExpenses";
-import { Login, Register } from "../../components/organisms";
+import { Login, Register, ListPage } from "../../components/organisms";
 import AddIncome from "../../components/organisms/addIncome/addIncome";
-import { ListPage } from "../../components/organisms/ListPage";
+import ExpensesList from "../../components/organisms/ListPage/ExpensesList";
+
 function AppRoute() {
   return (
     <>
@@ -16,6 +17,8 @@ function AppRoute() {
 
         <Route path="/expenses" element={<AddExpenses />} />
         <Route path="/listpage" element={<ListPage />} />
+        <Route path="/listexpenses" element={<ExpensesList />} />
+        <Route path="/income/:id" element={<AddIncome />} />
       </Routes>
     </>
   );
