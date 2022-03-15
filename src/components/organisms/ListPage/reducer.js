@@ -47,6 +47,25 @@ const listReducer = (state = initialState, action) => {
           ),
         },
       };
+
+    case "Add_Expense": {
+      const data = action.payload;
+      return {
+        ...state,
+        response: [...state.response.expenses, data],
+      };
+    }
+
+    case "expense/expenseDeleted":
+      return {
+        ...state,
+        response: {
+          expenses: state.response.expenses.filter(
+            (item) => Number(item.id) !== Number(action.payload)
+          ),
+        },
+      };
+
     default:
       return state;
   }
