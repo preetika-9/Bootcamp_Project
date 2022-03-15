@@ -6,12 +6,12 @@ import { listIncomeAction } from "./action";
 import { removeIncome } from "./action";
 import { Button, Table } from "react-bootstrap";
 import moment from "moment";
+import { FaEdit, FaTrash } from "react-icons/fa";
+import { IconContext } from "react-icons";
 
 const ListPage = () => {
   const dispatch = useDispatch();
   const income = useSelector((state) => state.incomeList);
-
-  console.log(income);
   useEffect(() => {
     dispatch(listIncomeAction());
   }, []);
@@ -29,7 +29,7 @@ const ListPage = () => {
     navigate("/listexpenses");
   };
   const onEdit = (item) => {
-    //console.log(item);
+    // console.log(item);
     navigate(`/income/${item.id}`);
   };
 
@@ -37,8 +37,6 @@ const ListPage = () => {
     localStorage.removeItem("token");
     navigate("/login");
   };
-
-  console.log(income?.response?.incomes, "listpage");
   return (
     <>
       <div className="header">
@@ -77,10 +75,14 @@ const ListPage = () => {
 
                 <td>
                   <Button variant="primary" onClick={() => onEdit(item)}>
-                    {" "}
-                    Edit
+                    <FaEdit /> Edit
                   </Button>{" "}
                   <Button variant="danger" onClick={() => onDelete(item.id)}>
+                    <IconContext.Provider
+                      value={{ color: "white", className: "global-class-name" }}
+                    >
+                      <FaTrash />
+                    </IconContext.Provider>
                     Delete
                   </Button>
                 </td>
