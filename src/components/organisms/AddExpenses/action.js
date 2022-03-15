@@ -1,4 +1,4 @@
-import { createExpense } from "./api";
+import { createExpense, UpdateExpense } from "./api";
 
 export const expenseAdded = (data) => ({ type: "Add_Expense", payload: data });
 
@@ -10,5 +10,12 @@ export function saveExpense(payload) {
         ...response.data,
       })
     );
+  };
+}
+
+export function EditExpenses(payload) {
+  return async function ExpenseEdit() {
+    const response = await UpdateExpense(payload);
+    console.log(response);
   };
 }

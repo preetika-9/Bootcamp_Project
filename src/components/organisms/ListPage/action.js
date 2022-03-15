@@ -1,4 +1,5 @@
 import axios from "axios";
+import { deleteExpense } from "../AddExpenses/api";
 import { deleteIncome } from "../addIncome/api";
 
 export const incomeDeleted = (incomeId) => ({
@@ -27,6 +28,25 @@ export const listIncomeAction = () => async (dispatch) => {
   }
 };
 
+export const removeIncome = (id) => async (dispatch) => {
+  try {
+    const response = await deleteIncome(id);
+    console.log(response.income, "response id");
+    dispatch({
+      type: "income/incomeDeleted",
+      payload: response.income,
+    });
+  } catch (error) {
+    dispatch({ type: "LIST_FETCHING_ERROR", payload: error });
+  }
+};
+
+//expenses
+export const expenseDeleted = (expenseId) => ({
+  type: "expense/expenseDeleted",
+  payload: expenseId,
+});
+
 export const listExpenseAction = () => async (dispatch) => {
   try {
     const token = localStorage.getItem("token");
@@ -47,27 +67,15 @@ export const listExpenseAction = () => async (dispatch) => {
   }
 };
 
-export const removeIncome = (id) => async (dispatch) => {
+export const removeExpense = (id) => async (dispatch) => {
   try {
-    const response = await deleteIncome(id);
-    console.log(response.income, "response id");
+    const response = await deleteExpense(id);
+    console.log(response.expense, "response id");
     dispatch({
-      type: "income/incomeDeleted",
-      payload: response.income,
+      type: "expense/expenseDeleted",
+      payload: response.expense,
     });
   } catch (error) {
     dispatch({ type: "LIST_FETCHING_ERROR", payload: error });
   }
 };
-
-// export function removeIncome(id) {
-//   return async function (dispatch, getState) {
-//     console.log(id, "delete id");
-//     const response = await deleteIncome(id);
-//     console.log(response.income, "response id");
-//     dispatch({
-//       type: "income/incomeDeleted",
-//       payload: response.income,
-//     });
-//   };
-//}
