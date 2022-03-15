@@ -31,7 +31,7 @@ const AddExpenses = () => {
         console.log(response, "hello");
         setValue("title", response.title);
         setValue("amount", response.amount);
-        setValue("date", new Date(response.data));
+        setValue("date", new Date(response.date));
         console.log(response);
       } catch (e) {
         // navigate("/listexpenses");

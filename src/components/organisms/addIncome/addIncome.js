@@ -9,21 +9,27 @@ import { Form } from "react-bootstrap";
 import { getIncomeById } from "./api";
 //import moment from "moment";
 import { EditIncome } from "./action";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
+toast.configure();
 const AddIncome = () => {
   const { control, handleSubmit, setValue } = useForm();
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
+  const params = useParams();
+  console.log(params);
   const submitHandler = (payload) => {
-    //console.log(payload);
     if (params.id) {
-      dispatch(EditIncome());
+      dispatch(EditIncome(params.id, payload));
+      //toast("Income Edited Successfully!!");
     }
     dispatch(saveIncome(payload));
+    console.log(payload);
     navigate("/listpage");
+    toast.success("Income Added Successfully!!");
   };
-  const params = useParams();
 
   useEffect(async () => {
     if (params.id) {
@@ -33,7 +39,7 @@ const AddIncome = () => {
         setValue("title", response.title);
         setValue("amount", response.amount);
         setValue("date", new Date(response.date));
-        console.log(response);
+        //console.log(response);
       } catch (e) {
         //navigate("/listpage");
       }

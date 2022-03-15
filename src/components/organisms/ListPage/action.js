@@ -10,7 +10,6 @@ export const incomeDeleted = (incomeId) => ({
 export const listIncomeAction = () => async (dispatch) => {
   try {
     const token = localStorage.getItem("token");
-    console.log(token);
     dispatch({ type: "LIST_FETCHING_ATTEMPT" });
 
     const { data } = await axios.get(
