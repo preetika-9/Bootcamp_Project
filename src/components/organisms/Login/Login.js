@@ -30,10 +30,11 @@ const Login = () => {
   };
 
   const dispatch = useDispatch();
-  const submitHandler = (values) => {
+  const submitHandler = async (values) => {
     const data = { ...values, active: true };
-    dispatch(LoginAction(data));
-    console.log(data);
+    await dispatch(LoginAction(data));
+    // console.log(data);
+
     navigate("/listpage");
   };
 
