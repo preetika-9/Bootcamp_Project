@@ -2,27 +2,39 @@ import "./App.css";
 import React from "react";
 
 import { AppRoutes } from "./Routes";
-//import AddExpenses from "./components/organisms/AddExpenses";
+import { useNavigate } from "react-router-dom";
 
-// import { AddIncome } from "./components/organisms/addIncome";
-// import { ListPage } from "./components/organisms/ListPage";
-// import Header from "./Routes/Header/Header";
-//import { Login } from "./components/organisms";
-
+//import jwt_decode from "jwt-decode";
 
 function App() {
+  const navigate = useNavigate();
+  const logout = () => {
+    // localStorage.removeItem("token");
+    navigate("/login");
+  };
+
+  const timeCheck = () => {
+    const token = localStorage.getItem("token");
+    console.log(token);
+
+    // const decoded = jwt_decode(token);
+    const timezoneOffset = new Date().getTime() / 1000;
+    const browserTime = Math.round(timezoneOffset);
+    // const expTime = decoded?.exp;
+
+    console.log(browserTime);
+    // console.log(expTime);
+
+    // if (browserTime >= expTime) {
+    //   logout();
+    // }
+    logout();
+  };
+
+  timeCheck();
   return (
     <>
       <AppRoutes />
-
-      {/*  <Login />
-
-      <AppRoutes />
-      {/* <Header />
-
-      <ListPage />
-      <AddIncome /> */}
-
     </>
   );
 }

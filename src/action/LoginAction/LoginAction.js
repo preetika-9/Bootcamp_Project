@@ -8,6 +8,7 @@ const LoginAction = (payload) => async (dispatch) => {
     localStorage.setItem("token", data.token);
 
     dispatch({ type: "LOGIN_FETCHING_SUCCESS", payload: data });
+    return data;
   } catch (error) {
     dispatch({ type: "LOGIN_FETCHING_ERROR", payload: error });
   }

@@ -38,6 +38,10 @@ const ExpenseList = () => {
     navigate(`/expenses/${item.id}`);
   };
 
+  const onFilter = () => {
+    navigate("/monthfilter");
+  };
+
   return (
     <>
       <div className="header">
@@ -45,6 +49,10 @@ const ExpenseList = () => {
         <div className="add-income-btn">
           <Button variant="primary" onClick={onAdd}>
             Add Expenses
+          </Button>
+
+          <Button variant="primary" onClick={onFilter}>
+            Filter Month
           </Button>
         </div>
       </div>

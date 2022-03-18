@@ -3,8 +3,7 @@ import { Controller, useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 
-import { FormDatePicker } from "../../molecules";
-import InputField from "../../molecules/InputField/InputField";
+import { FormDatePicker, InputField } from "components/molecules";
 import { Form } from "react-bootstrap";
 import { EditExpenses, saveExpense } from "./action";
 import { getExpenseById } from "./api";
