@@ -2,11 +2,11 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import { listExpenseAction } from "./action";
-import { removeIncome } from "./action";
+import { removeExpense, listExpenseAction } from "./action";
 import { Button, Table } from "react-bootstrap";
+import moment from "moment";
 
-const ExpensesList = () => {
+const ExpenseList = () => {
   const dispatch = useDispatch();
 
   const expense = useSelector((state) => state.expenseList);
@@ -16,8 +16,9 @@ const ExpensesList = () => {
   }, []);
   //const { isError, isFetching, response } = income;
 
-  const onDelete = (id) => {
-    dispatch(removeIncome(id));
+  const onDelete = async (id) => {
+    const response = await dispatch(removeExpense(id));
+    console.log(response);
   };
   const navigate = useNavigate();
   const onAdd = () => {
@@ -32,13 +33,28 @@ const ExpensesList = () => {
     localStorage.removeItem("token");
     navigate("/login");
   };
+
+  const onEdit = (item) => {
+    navigate(`/expenses/${item.id}`);
+  };
+
+  const onFilter = () => {
+    navigate("/monthfilter");
+  };
+
   return (
     <>
       <div className="header">
         <h1 className="Header-title">Expense Data</h1>
-        <Button variant="primary" onClick={onAdd}>
-          Add Expenses
-        </Button>
+        <div className="add-income-btn">
+          <Button variant="primary" onClick={onAdd}>
+            Add Expenses
+          </Button>
+
+          <Button variant="primary" onClick={onFilter}>
+            Filter Month
+          </Button>
+        </div>
       </div>
       <Table striped bordered hover>
         <thead>
@@ -57,10 +73,13 @@ const ExpensesList = () => {
                 <td>{item.id}</td>
                 <td>{item.title}</td>
                 <td>{item.amount}</td>
-                <td>{item.date}</td>
+                <td>{moment(item.date).format("DD/MM/YYYY")}</td>
                 <td>
-                  <Button variant="primary"> Edit</Button>{" "}
-                  <Button variant="danger" onClick={onDelete}>
+                  <Button variant="primary" onClick={() => onEdit(item)}>
+                    {" "}
+                    Edit
+                  </Button>{" "}
+                  <Button variant="danger" onClick={() => onDelete(item.id)}>
                     Delete
                   </Button>
                 </td>
@@ -77,12 +96,18 @@ const ExpensesList = () => {
           Go To Income List
         </Button>
       </div>
-
-      <Button variant="primary" onClick={logout}>
-        LogOut
-      </Button>
+      <div className="logout-btn">
+        <Button
+          variant="primary"
+          onClick={logout}
+          className="log-out-btn"
+          size="lg"
+        >
+          LogOut
+        </Button>
+      </div>
     </>
   );
 };
 
-export default ExpensesList;
+export default ExpenseList;

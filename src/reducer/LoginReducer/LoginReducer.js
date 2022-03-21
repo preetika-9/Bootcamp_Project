@@ -1,5 +1,6 @@
 const initialState = {
   response: [],
+  userAuthenticate: !!localStorage.getItem("token"),
 };
 
 const LoginReducer = (state = initialState, action) => {
@@ -11,13 +12,14 @@ const LoginReducer = (state = initialState, action) => {
         isError: false,
       };
     case "LOGIN_FETCHING_SUCCESS":
-      alert("Succussfully Login");
       return {
         ...state,
         isFetching: false,
         isError: false,
         response: action.payload,
+        userAuthenticate: true,
       };
+
     case "LOGIN_FETCHING_ERROR":
       return {
         ...state,
