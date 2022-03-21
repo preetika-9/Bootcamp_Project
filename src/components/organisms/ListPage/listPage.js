@@ -32,6 +32,9 @@ const ListPage = () => {
     // console.log(item);
     navigate(`/income/${item.id}`);
   };
+  const filterDate = () => {
+    navigate("/filterdate");
+  };
 
   const logout = () => {
     localStorage.removeItem("token");
@@ -44,6 +47,9 @@ const ListPage = () => {
         <div className="add-income-btn">
           <Button variant="primary" onClick={onAdd}>
             Add Income
+          </Button>
+          <Button variant="primary" onClick={filterDate}>
+            Filter Date
           </Button>
         </div>
       </div>
