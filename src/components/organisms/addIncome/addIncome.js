@@ -16,7 +16,6 @@ toast.configure();
 const AddIncome = () => {
   const { control, handleSubmit, setValue } = useForm();
   const dispatch = useDispatch();
-
   const navigate = useNavigate();
   const params = useParams();
   console.log(params);
@@ -24,11 +23,12 @@ const AddIncome = () => {
     if (params.id) {
       dispatch(EditIncome(params.id, payload));
       //toast("Income Edited Successfully!!");
+    } else {
+      dispatch(saveIncome(payload));
+      console.log(payload);
+      navigate("/listpage");
+      toast.success("Income Added Successfully!!");
     }
-    dispatch(saveIncome(payload));
-    console.log(payload);
-    navigate("/listpage");
-    toast.success("Income Added Successfully!!");
   };
 
   useEffect(async () => {
