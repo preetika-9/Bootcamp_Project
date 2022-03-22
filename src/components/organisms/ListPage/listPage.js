@@ -9,6 +9,9 @@ import moment from "moment";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { IconContext } from "react-icons";
 
+import Popup from "reactjs-popup";
+import "reactjs-popup/dist/index.css";
+
 const ListPage = () => {
   const dispatch = useDispatch();
   const income = useSelector((state) => state.incomeList);
@@ -18,6 +21,9 @@ const ListPage = () => {
   //const { isError, isFetching, response } = income;
 
   const onDelete = (id) => {
+    <Popup trigger={<Button> Trigger</Button>} position="right center">
+      <div>Popup content here !!</div>
+    </Popup>;
     dispatch(removeIncome(id));
   };
   const navigate = useNavigate();

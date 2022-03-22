@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../../utils/axios";
 import { apiUrl } from "../../utils";
 const LoginAction = (payload) => async (dispatch) => {
   try {
@@ -11,6 +11,7 @@ const LoginAction = (payload) => async (dispatch) => {
     return data;
   } catch (error) {
     dispatch({ type: "LOGIN_FETCHING_ERROR", payload: error });
+    return error;
   }
 };
 

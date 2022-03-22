@@ -32,9 +32,10 @@ const Login = () => {
   const dispatch = useDispatch();
   const submitHandler = async (values) => {
     const data = { ...values, active: true };
-    await dispatch(LoginAction(data));
-    // console.log(data);
 
+    const response = await dispatch(LoginAction(data));
+    // console.log(data);
+    console.log(response);
     navigate("/listpage");
   };
 
@@ -46,47 +47,43 @@ const Login = () => {
             <h1 className="login-title text-center">Log in</h1>
             <form onSubmit={handleSubmit(submitHandler)}>
               <Form.Group>
-                <Form.Label>
-                  <Controller
-                    name="email"
-                    control={control}
-                    defaultValue={""}
-                    render={({ field, fieldState }) => {
-                      return (
-                        <InputField
-                          {...field}
-                          {...fieldState}
-                          error={fieldState.error}
-                          type="text"
-                          placeholder="Enter your email"
-                          label="Email"
-                        />
-                      );
-                    }}
-                  />
-                </Form.Label>
+                <Controller
+                  name="email"
+                  control={control}
+                  defaultValue={""}
+                  render={({ field, fieldState }) => {
+                    return (
+                      <InputField
+                        {...field}
+                        {...fieldState}
+                        error={fieldState.error}
+                        type="text"
+                        placeholder="Enter your email"
+                        label="Email"
+                      />
+                    );
+                  }}
+                />
               </Form.Group>
 
               <Form.Group>
-                <Form.Label>
-                  <Controller
-                    name="password"
-                    control={control}
-                    defaultValue={""}
-                    render={({ field, fieldState }) => {
-                      return (
-                        <InputField
-                          {...field}
-                          {...fieldState}
-                          error={fieldState.error}
-                          type="password"
-                          placeholder="Enter your password"
-                          label="Password"
-                        />
-                      );
-                    }}
-                  />
-                </Form.Label>
+                <Controller
+                  name="password"
+                  control={control}
+                  defaultValue={""}
+                  render={({ field, fieldState }) => {
+                    return (
+                      <InputField
+                        {...field}
+                        {...fieldState}
+                        error={fieldState.error}
+                        type="password"
+                        placeholder="Enter your password"
+                        label="Password"
+                      />
+                    );
+                  }}
+                />
               </Form.Group>
 
               <div>

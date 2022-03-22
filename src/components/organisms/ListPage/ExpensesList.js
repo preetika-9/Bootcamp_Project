@@ -6,6 +6,19 @@ import { removeExpense, listExpenseAction } from "./action";
 import { Button, Table } from "react-bootstrap";
 import moment from "moment";
 
+import Modal from "react-modal";
+
+const customStyles = {
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+  },
+};
+
 const ExpenseList = () => {
   const dispatch = useDispatch();
 
@@ -19,6 +32,7 @@ const ExpenseList = () => {
   const onDelete = async (id) => {
     const response = await dispatch(removeExpense(id));
     console.log(response);
+    closeModal();
   };
   const navigate = useNavigate();
   const onAdd = () => {
@@ -42,11 +56,31 @@ const ExpenseList = () => {
     navigate("/monthfilter");
   };
 
+  const [modalIsOpen, setIsOpen] = React.useState(false);
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+
   return (
     <>
       <div className="header">
         <h1 className="Header-title">Expense Data</h1>
         <div className="add-income-btn">
+          <Modal
+            isOpen={modalIsOpen}
+            onRequestClose={closeModal}
+            style={customStyles}
+            contentLabel="Example Modal"
+          >
+            <h1>Are you sure you want to delete?</h1>
+            <Button onClick={onDelete}>Yes</Button>
+            <Button onClick={closeModal}>No</Button>
+          </Modal>
           <Button variant="primary" onClick={onAdd}>
             Add Expenses
           </Button>
@@ -79,7 +113,7 @@ const ExpenseList = () => {
                     {" "}
                     Edit
                   </Button>{" "}
-                  <Button variant="danger" onClick={() => onDelete(item.id)}>
+                  <Button variant="danger" onClick={openModal}>
                     Delete
                   </Button>
                 </td>
