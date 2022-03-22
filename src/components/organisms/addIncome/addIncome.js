@@ -16,7 +16,6 @@ toast.configure();
 const AddIncome = () => {
   const { control, handleSubmit, setValue } = useForm();
   const dispatch = useDispatch();
-
   const navigate = useNavigate();
   const params = useParams();
   console.log(params);

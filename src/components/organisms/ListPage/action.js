@@ -1,4 +1,5 @@
 import axios from "axios";
+import { errorConsole } from "utils/helper";
 import { deleteExpense } from "../AddExpenses/api";
 import { deleteIncome } from "../addIncome/api";
 
@@ -9,7 +10,7 @@ export const incomeDeleted = (incomeId) => ({
 
 export const listIncomeAction = () => async (dispatch) => {
   try {
-    const token = localStorage.getItem("token");
+    //const token = localStorage.getItem("token");
     dispatch({ type: "LIST_FETCHING_ATTEMPT" });
 
     const { data } = await axios.get(
@@ -17,12 +18,16 @@ export const listIncomeAction = () => async (dispatch) => {
 
       {
         headers: {
-          Authorization: "Bearer " + token,
+          Authorization:
+            "Bearer " +
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFkbWluIiwiYWRkcmVzcyI6IkxhbGl0cHVyLCBOZXBhbCIsInBob25lIjoiOTg0MTEyMzEyMyIsImVtYWlsIjoiYWRtaW5AZ3VyenUuY29tIiwiYWN0aXZlIjoxLCJkYXRlX29mX2JpcnRoIjoiMjAyMi0wMy0wMlQyMDo1OToyOC4xMTFaIiwiaWF0IjoxNjQ2NzM2MzY5LCJleHAiOjE2NDY4MjI3Njl9.BTdrEKy1LD6hfRu0UM2yOxz-sht1ux-3n-UrLWQJmBM",
         },
       }
     );
     dispatch({ type: "LIST_FETCHING_SUCCESS", payload: data });
   } catch (error) {
+    console.log("saurab");
+    errorConsole(error);
     dispatch({ type: "LIST_FETCHING_ERROR", payload: error });
   }
 };
@@ -48,7 +53,7 @@ export const expenseDeleted = (expenseId) => ({
 
 export const listExpenseAction = () => async (dispatch) => {
   try {
-    const token = localStorage.getItem("token");
+    //const token = localStorage.getItem("token");
     dispatch({ type: "LIST_FETCHING_ATTEMPT" });
 
     const { data } = await axios.get(
@@ -56,7 +61,9 @@ export const listExpenseAction = () => async (dispatch) => {
 
       {
         headers: {
-          Authorization: "Bearer " + token,
+          Authorization:
+            "Bearer " +
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFkbWluIiwiYWRkcmVzcyI6IkxhbGl0cHVyLCBOZXBhbCIsInBob25lIjoiOTg0MTEyMzEyMyIsImVtYWlsIjoiYWRtaW5AZ3VyenUuY29tIiwiYWN0aXZlIjoxLCJkYXRlX29mX2JpcnRoIjoiMjAyMi0wMy0wMlQyMDo1OToyOC4xMTFaIiwiaWF0IjoxNjQ2NzM2MzY5LCJleHAiOjE2NDY4MjI3Njl9.BTdrEKy1LD6hfRu0UM2yOxz-sht1ux-3n-UrLWQJmBM",
         },
       }
     );
