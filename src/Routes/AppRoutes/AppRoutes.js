@@ -1,15 +1,13 @@
 /* eslint-disable react/prop-types */
 import React from "react";
 import { Routes, Route, Navigate, Outlet } from "react-router-dom";
-import AddExpenses from "../../components/organisms/AddExpenses";
-import { Login, Register, ListPage } from "../../components/organisms";
-import AddIncome from "../../components/organisms/addIncome/addIncome";
-import ExpensesList from "../../components/organisms/ListPage/ExpensesList";
-import MonthExpenses from "components/organisms/MonthExpenses/MonthExpenses";
+import AddExpenses from "components/organisms/AddExpenses";
+import { Login, Register, ListPage } from "components/organisms";
+import AddIncome from "components/organisms/addIncome/addIncome";
+import ExpensesList from "components/organisms/ListPage/ExpensesList";
+import MonthExpenses from "components/organisms/FilterDate/MonthExpenses";
+import FilterDate from "components/organisms/FilterDate/FilterDate";
 import { useSelector } from "react-redux";
-
-//import jwt_decode from "jwt-decode";
-//import moment from "moment";
 
 const ProtectedRoute = ({ redirectPath = "/login" }) => {
   const login = useSelector((state) => state.login.userAuthenticate);
@@ -30,7 +28,7 @@ const ProtectedRoute = ({ redirectPath = "/login" }) => {
   if (!login) {
     return <Navigate to={redirectPath} replace />;
   }
-  //browserTime > expTime ? <Navigate to={redirectPath} replace /> : <Outlet />;
+  // browserTime > expTime ? <Navigate to={redirectPath} replace /> : <Outlet />;
 
   return <Outlet />;
 };
@@ -51,6 +49,7 @@ function AppRoute() {
           <Route path="/income/:id" element={<AddIncome />} />
           <Route path="/expenses/:id" element={<AddExpenses />} />
           <Route path="/monthfilter" element={<MonthExpenses />} />
+          <Route path="/filterdate" element={<FilterDate />} />
         </Route>
       </Routes>
     </>

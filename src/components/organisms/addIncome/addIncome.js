@@ -22,7 +22,8 @@ const AddIncome = () => {
   const submitHandler = (payload) => {
     if (params.id) {
       dispatch(EditIncome(params.id, payload));
-      //toast("Income Edited Successfully!!");
+      navigate("/listpage");
+      toast.success("Income Edited Successfully!!");
     } else {
       dispatch(saveIncome(payload));
       console.log(payload);
@@ -50,70 +51,72 @@ const AddIncome = () => {
     <>
       <div className="income-section ">
         <div className="container ">
-          <div className="income-box ">
-            <h1>{params.id ? "Edit" : "Add"} Income</h1>
-            <form onSubmit={handleSubmit(submitHandler)}>
-              <Form.Group>
-                <Form.Label>
-                  <Controller
-                    name="title"
-                    control={control}
-                    render={({ field, fieldState }) => {
-                      return (
-                        <InputField
-                          {...field}
-                          {...fieldState}
-                          error={fieldState.error}
-                          type="text"
-                          placeholder="Enter title of income"
-                          label="Income Title"
-                        />
-                      );
-                    }}
-                  />
-                </Form.Label>
-              </Form.Group>
-
-              <Form.Group>
-                <Form.Label>
-                  <Controller
-                    name="amount"
-                    control={control}
-                    render={({ field, fieldState }) => {
-                      return (
-                        <InputField
-                          {...field}
-                          {...fieldState}
-                          error={fieldState.error}
-                          type="number"
-                          placeholder="Enter amount"
-                          label="Income Amount"
-                        />
-                      );
-                    }}
-                  />
-                </Form.Label>
-              </Form.Group>
-
-              <Controller
-                name="date"
-                control={control}
-                render={({ field, fieldState }) => {
-                  return (
-                    <FormDatePicker
-                      {...field}
-                      {...fieldState}
-                      error={fieldState.error}
-                      label={"Date of income"}
-                      placeholder={"Select  date of income."}
+          <div className="income-wrapper">
+            <div className="income-box ">
+              <h1>{params.id ? "Edit" : "Add"} Income</h1>
+              <form onSubmit={handleSubmit(submitHandler)}>
+                <Form.Group>
+                  <Form.Label>
+                    <Controller
+                      name="title"
+                      control={control}
+                      render={({ field, fieldState }) => {
+                        return (
+                          <InputField
+                            {...field}
+                            {...fieldState}
+                            error={fieldState.error}
+                            type="text"
+                            placeholder="Enter title of income"
+                            label="Income Title"
+                          />
+                        );
+                      }}
                     />
-                  );
-                }}
-              />
-              <button type="submit" className="btn btn-dark">
-                Submit
-              </button>
-            </form>
+                  </Form.Label>
+                </Form.Group>
+
+                <Form.Group>
+                  <Form.Label>
+                    <Controller
+                      name="amount"
+                      control={control}
+                      render={({ field, fieldState }) => {
+                        return (
+                          <InputField
+                            {...field}
+                            {...fieldState}
+                            error={fieldState.error}
+                            type="number"
+                            placeholder="Enter amount"
+                            label="Income Amount"
+                          />
+                        );
+                      }}
+                    />
+                  </Form.Label>
+                </Form.Group>
+
+                <Controller
+                  name="date"
+                  control={control}
+                  render={({ field, fieldState }) => {
+                    return (
+                      <FormDatePicker
+                        {...field}
+                        {...fieldState}
+                        error={fieldState.error}
+                        label={"Date of income"}
+                        placeholder={"Select  date of income."}
+                      />
+                    );
+                  }}
+                />
+                <button type="submit" className="btn btn-dark btn-lg">
+                  Submit
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       </div>

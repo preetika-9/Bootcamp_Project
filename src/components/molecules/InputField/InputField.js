@@ -7,13 +7,13 @@ const InputField = (props) => {
 
   return (
     <div className="mb-3">
-      <label htmlFor="FormControlInput" className="form-label">
+      <label htmlFor="FormControlInput" className="form-label fs-4">
         {label}
       </label>
       <input
         name={name}
         type={type}
-        className="form-control"
+        className="form-control form-control-lg"
         placeholder={placeholder}
         value={value}
         onChange={onChange}

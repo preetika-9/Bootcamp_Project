@@ -11,12 +11,12 @@ const FormDatePicker = (props) => {
     value,
     onChange,
     error,
-
     ...rest
   } = props;
+
   return (
     <div className="mb-3">
-      <label htmlFor="exampleFormControlInput1" className="form-label">
+      <label htmlFor="exampleFormControlInput1" className="form-label fs-4">
         {label}
       </label>
       <DatePicker
@@ -26,6 +26,7 @@ const FormDatePicker = (props) => {
         maxDate={new Date()}
         customInput={<input />}
         {...rest}
+        className=" form-control form-control-md "
       />
       <div className="error-message">{error && error.message}</div>
     </div>

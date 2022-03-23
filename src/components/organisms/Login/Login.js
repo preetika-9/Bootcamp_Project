@@ -32,21 +32,22 @@ const Login = () => {
   const dispatch = useDispatch();
   const submitHandler = async (values) => {
     const data = { ...values, active: true };
-    await dispatch(LoginAction(data));
-    // console.log(data);
 
+    const response = await dispatch(LoginAction(data));
+    // console.log(data);
+    console.log(response);
     navigate("/listpage");
   };
 
   return (
     <div className="login-section ">
       <div className="container ">
-        <div className="login-box ">
-          <div className="login-inner ">
-            <h1 className="login-title text-center">Log in</h1>
-            <form onSubmit={handleSubmit(submitHandler)}>
-              <Form.Group>
-                <Form.Label>
+        <div className="login-wrapper">
+          <div className="login-box ">
+            <div className="login-inner ">
+              <h1 className="login-title text-center fs-1 fw-bold">Log in</h1>
+              <form onSubmit={handleSubmit(submitHandler)}>
+                <Form.Group>
                   <Controller
                     name="email"
                     control={control}
@@ -64,11 +65,9 @@ const Login = () => {
                       );
                     }}
                   />
-                </Form.Label>
-              </Form.Group>
+                </Form.Group>
 
-              <Form.Group>
-                <Form.Label>
+                <Form.Group>
                   <Controller
                     name="password"
                     control={control}
@@ -86,24 +85,28 @@ const Login = () => {
                       );
                     }}
                   />
-                </Form.Label>
-              </Form.Group>
+                </Form.Group>
 
-              <div>
-                <Button variant="dark" type="submit" className="login-btn">
-                  Login
-                </Button>
-              </div>
+                <div>
+                  <Button
+                    variant="dark"
+                    type="submit"
+                    className="login-btn btn-lg"
+                  >
+                    Login
+                  </Button>
+                </div>
 
-              <Form.Text>
-                <p>
-                  Not a member{" "}
-                  <Link onClick={goToRegister} to="./register">
-                    Register Here
-                  </Link>
-                </p>
-              </Form.Text>
-            </form>
+                <Form.Text>
+                  <p className="fs-5">
+                    Not a member{" "}
+                    <Link onClick={goToRegister} to="./register">
+                      Register Here
+                    </Link>
+                  </p>
+                </Form.Text>
+              </form>
+            </div>
           </div>
         </div>
       </div>
