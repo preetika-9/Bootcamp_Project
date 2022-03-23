@@ -1,12 +1,9 @@
-import axios from "axios";
+import axios from "../../../utils/axios";
 
 export const registerAction = (payload) => async (dispatch) => {
   try {
     dispatch({ type: "REGISTER_FETCHING_ATTEMPT" });
-    const { data } = await axios.post(
-      "http://localhost:3005/api/auth/register",
-      payload
-    );
+    const { data } = await axios.post("/api/auth/register", payload);
     dispatch({ type: "REGISTER_FETCHING_SUCCESS", payload: data });
   } catch (error) {
     dispatch({ type: "REGISTER_FETCHING_ERROR", payload: error });

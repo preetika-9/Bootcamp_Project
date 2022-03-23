@@ -42,65 +42,71 @@ const Login = () => {
   return (
     <div className="login-section ">
       <div className="container ">
-        <div className="login-box ">
-          <div className="login-inner ">
-            <h1 className="login-title text-center">Log in</h1>
-            <form onSubmit={handleSubmit(submitHandler)}>
-              <Form.Group>
-                <Controller
-                  name="email"
-                  control={control}
-                  defaultValue={""}
-                  render={({ field, fieldState }) => {
-                    return (
-                      <InputField
-                        {...field}
-                        {...fieldState}
-                        error={fieldState.error}
-                        type="text"
-                        placeholder="Enter your email"
-                        label="Email"
-                      />
-                    );
-                  }}
-                />
-              </Form.Group>
+        <div className="login-wrapper">
+          <div className="login-box ">
+            <div className="login-inner ">
+              <h1 className="login-title text-center fs-1 fw-bold">Log in</h1>
+              <form onSubmit={handleSubmit(submitHandler)}>
+                <Form.Group>
+                  <Controller
+                    name="email"
+                    control={control}
+                    defaultValue={""}
+                    render={({ field, fieldState }) => {
+                      return (
+                        <InputField
+                          {...field}
+                          {...fieldState}
+                          error={fieldState.error}
+                          type="text"
+                          placeholder="Enter your email"
+                          label="Email"
+                        />
+                      );
+                    }}
+                  />
+                </Form.Group>
 
-              <Form.Group>
-                <Controller
-                  name="password"
-                  control={control}
-                  defaultValue={""}
-                  render={({ field, fieldState }) => {
-                    return (
-                      <InputField
-                        {...field}
-                        {...fieldState}
-                        error={fieldState.error}
-                        type="password"
-                        placeholder="Enter your password"
-                        label="Password"
-                      />
-                    );
-                  }}
-                />
-              </Form.Group>
+                <Form.Group>
+                  <Controller
+                    name="password"
+                    control={control}
+                    defaultValue={""}
+                    render={({ field, fieldState }) => {
+                      return (
+                        <InputField
+                          {...field}
+                          {...fieldState}
+                          error={fieldState.error}
+                          type="password"
+                          placeholder="Enter your password"
+                          label="Password"
+                        />
+                      );
+                    }}
+                  />
+                </Form.Group>
 
-              <div>
-                <Button variant="dark" type="submit" className="login-btn">
-                  Login
-                </Button>
-              </div>
+                <div>
+                  <Button
+                    variant="dark"
+                    type="submit"
+                    className="login-btn btn-lg"
+                  >
+                    Login
+                  </Button>
+                </div>
 
-              <Form.Text>
-                <p>
-                  Not a member{" "}
-                  <Link onClick={goToRegister} to="./register">
-                    Register Here
-                  </Link>
-                </p>
-              </Form.Text>
-            </form>
+                <Form.Text>
+                  <p className="fs-5">
+                    Not a member{" "}
+                    <Link onClick={goToRegister} to="./register">
+                      Register Here
+                    </Link>
+                  </p>
+                </Form.Text>
+              </form>
+            </div>
           </div>
         </div>
       </div>

@@ -29,6 +29,7 @@ const ExpenseMonth = () => {
   console.log(datee);
   return (
     <div>
+      <h1>Monthly Income</h1>
       {datee.map((item) => {
         let sum = 0;
         const thisMonthData = income?.response?.incomes?.filter(

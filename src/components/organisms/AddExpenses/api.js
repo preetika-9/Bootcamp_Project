@@ -1,67 +1,32 @@
-import axios from "axios";
+import axios from "../../../utils/axios";
 
 export const createExpense = (payload) => {
-  const url = "http://localhost:3005/api/expense";
-  const token = localStorage.getItem("token");
-  console.log(token, "hello");
+  const url = "/api/expense";
+
   return axios
-    .post(
-      url,
-      {
-        ...payload,
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    )
+    .post(url, {
+      ...payload,
+    })
     .then((res) => res.data);
 };
 
 export const getExpenseById = (id) => {
-  const url = `http://localhost:3005/api/expense/${id}`;
-  const token = localStorage.getItem("token");
-  console.log(token, "hello");
-  return axios
-    .get(url, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-    .then((res) => res.data);
+  const url = `/api/expense/${id}`;
+
+  return axios.get(url).then((res) => res.data);
 };
 
-export const UpdateExpense = (payload) => {
-  const { id, ...rest } = payload;
-  const url = `http://localhost:3005/api/expense/${id}`;
-  const token = localStorage.getItem("token");
-  console.log(token, "hello");
+export const UpdateExpense = (id, payload) => {
+  const url = `/api/expense/${id}`;
 
-  return axios
-    .put(
-      url,
-      rest,
+  // return axios.put(url, payload).then((res) => res.data);
 
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    )
-    .then((res) => res.data);
+  return axios.put(url, payload);
 };
 
 export const deleteExpense = (id) => {
-  const token = localStorage.getItem("token");
   console.log(id);
-  const url = `http://localhost:3005/api/expense/${id}`;
+  const url = `/api/expense/${id}`;
 
-  return axios
-    .delete(url, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-    .then((res) => res.data);
+  return axios.delete(url).then((res) => res.data);
 };

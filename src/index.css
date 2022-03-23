@@ -17,16 +17,26 @@ code {
 }
 
 .register-section,
-.login-section,
-.income-section,
-.expenses-section {
+.login-section {
   height: 100vh;
   background: url(./utils/images/Background.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
+  align-items: center;
+}
+
+.income-section,
+.expenses-section {
+  height: 100vh;
+  background: url(./utils/images/images.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  display: flex;
+  /* justify-content: center; */
   align-items: center;
 }
 
@@ -34,19 +44,21 @@ code {
 .login-box,
 .income-box,
 .expenses-box {
-  /* display: flex; */
-  justify-content: center;
-  align-items: center;
-  /* margin-top: 221px; */
   background-color: rgba(255, 255, 255, 0.479);
-  /* width: 60%; */
+  width: 60%;
   border-radius: 50px;
-  padding: 50px 0px;
-  /* margin: 0px 300px; */
+  padding: 50px 150px;
 }
 
-/* .login-box {
-  margin: 0px 400px;
+.login-wrapper,
+.income-wrapper,
+.expenses-wrapper {
+  display: flex;
+  justify-content: center;
+}
+/* 
+.date-picker {
+  padding: 0px 50px;
 } */
 
 .error-message {
@@ -62,10 +74,43 @@ code {
   margin-bottom: 10px;
 }
 
-.logout-btn {
+/* .logout-btn {
   margin-top: 40px;
-}
+} */
 
 .add-income-btn {
   margin: 20px 0px;
+}
+
+.footer-listpage {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.button-add {
+  margin-right: 50px;
+}
+
+.button-filter {
+  margin-left: 50px;
+}
+
+.icon {
+  color: white;
+}
+
+.overlay {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
+@media (min-width: 576px) {
 }
