@@ -16,6 +16,7 @@
     "react-bootstrap": "^2.1.2",
     "react-datepicker": "^4.7.0",
     "react-dom": "^17.0.2",
+    "react-dropzone": "^12.0.4",
     "react-hook-form": "^7.27.1",
     "react-icons": "^4.3.1",
     "react-modal": "^3.14.4",
@@ -32,7 +33,15 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "start:testing": "env-cmd -f .env.testing react-scripts start",
+    "start:prod": "env-cmd -f .env.prod react-scripts start",
+    "start:staging": "env-cmd -f .env.staging react-scripts start",
+    "start:dev": "env-cmd -f .env.dev react-scripts start",
     "build": "react-scripts build",
+    "build:testing": "env-cmd -f .env.testing react-scripts build",
+    "build:prod": "env-cmd -f .env.prod react-scripts build",
+    "build:staging": "env-cmd -f .env.staging react-scripts build",
+    "build:dev": "env-cmd -f .env.dev react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -55,6 +64,7 @@
     ]
   },
   "devDependencies": {
+    "env-cmd": "^10.1.0",
     "eslint": "^8.10.0",
     "eslint-plugin-react": "^7.29.3"
   }

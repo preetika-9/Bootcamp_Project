@@ -11,7 +11,6 @@ const registerReducer = (state = initialState, action) => {
         isError: false,
       };
     case "REGISTER_FETCHING_SUCCESS":
-      alert("Succussfully Register");
       return {
         ...state,
         isFetching: false,
@@ -23,6 +22,16 @@ const registerReducer = (state = initialState, action) => {
         ...state,
         isFetching: false,
         isError: true,
+      };
+
+    case "user/userDeleted":
+      return {
+        ...state,
+        response: {
+          users: state.response.users.filter(
+            (item) => Number(item.id) !== Number(action.payload)
+          ),
+        },
       };
     default:
       return state;

@@ -2,6 +2,8 @@ import "./App.css";
 import React from "react";
 
 import { AppRoutes } from "./Routes";
+// import Users from "components/organisms/Register/Users";
+// import { Header } from "Routes/Header";
 //import { useNavigate } from "react-router-dom";
 
 //import jwt_decode from "jwt-decode";
@@ -37,6 +39,7 @@ function App() {
   // }, []);
   return (
     <>
+      {/* <Users /> */}
       <AppRoutes />
     </>
   );

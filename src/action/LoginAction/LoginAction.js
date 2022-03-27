@@ -1,10 +1,9 @@
 import axios from "../../utils/axios";
-import { apiUrl } from "../../utils";
 const LoginAction = (payload) => async (dispatch) => {
   try {
     dispatch({ type: "LOGIN_FETCHING_ATTEMPT" });
 
-    const { data } = await axios.post(`${apiUrl}/api/auth`, payload);
+    const { data } = await axios.post(`/api/auth`, payload);
     console.log(data.token);
     localStorage.setItem("token", data.token);
 

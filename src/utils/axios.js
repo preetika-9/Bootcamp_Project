@@ -1,8 +1,7 @@
 import axios from "axios";
-import { apiUrl } from "./index";
 import { errorConsole } from "./helper";
 
-axios.defaults.baseURL = apiUrl;
+axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 axios.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("token");

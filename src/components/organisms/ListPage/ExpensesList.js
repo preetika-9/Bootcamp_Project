@@ -12,6 +12,9 @@ import { FaEdit, FaTrash } from "react-icons/fa";
 import { IconContext } from "react-icons";
 
 const customStyles = {
+  overlay: {
+    backgroundColor: "rgba(0, 0, 0, 0.75",
+  },
   content: {
     top: "50%",
     left: "50%",
@@ -88,8 +91,8 @@ const ExpenseList = () => {
               {/* <Button onClick={() => onDelete(selectedId)}>Yes</Button>
               <Button onClick={closeModal}>No</Button> */}
 
-              <div className="footer-listpage col-12">
-                <div className="expenses-list-btn col-12 col-lg-6 col-md-6 col-sm-12  d-flex justify-content-center">
+              <div className="modal-box col-12">
+                <div className="modal-confirm-btn col-12 col-lg-6 col-md-6 col-sm-12  d-flex justify-content-center">
                   <Button
                     variant="danger"
                     className=" btn-lg"
@@ -98,7 +101,7 @@ const ExpenseList = () => {
                     Yes
                   </Button>
                 </div>
-                <div className="logout-btn col-12 col-lg-6 col-md-6 col-sm-12 d-flex justify-content-center">
+                <div className="modal-close-btn col-12 col-lg-6 col-md-6 col-sm-12 d-flex justify-content-center">
                   <Button
                     variant="primary"
                     onClick={closeModal}

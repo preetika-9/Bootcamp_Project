@@ -33,12 +33,6 @@ const listReducer = (state = initialState, action) => {
     }
 
     case "income/incomeDeleted":
-      // console.log(
-      //   state.response.incomes.filter(
-      //     (item) => Number(item.id) !== Number(action.payload)
-      //   ),
-      //   "delete console"
-      // );
       return {
         ...state,
         response: {

@@ -8,8 +8,10 @@ import ExpensesList from "components/organisms/ListPage/ExpensesList";
 import MonthExpenses from "components/organisms/FilterDate/MonthExpenses";
 import FilterDate from "components/organisms/FilterDate/FilterDate";
 import { useSelector } from "react-redux";
+import { Header } from "Routes/Header";
+import Users from "components/organisms/Register/Users";
 
-const ProtectedRoute = ({ redirectPath = "/login" }) => {
+const ProtectedRoute = ({ children, redirectPath = "/login" }) => {
   const login = useSelector((state) => state.login.userAuthenticate);
 
   // const token = localStorage.getItem("token");
@@ -30,7 +32,12 @@ const ProtectedRoute = ({ redirectPath = "/login" }) => {
   }
   // browserTime > expTime ? <Navigate to={redirectPath} replace /> : <Outlet />;
 
-  return <Outlet />;
+  return (
+    <>
+      {children}
+      <Outlet />
+    </>
+  );
 };
 
 function AppRoute() {
@@ -41,7 +48,13 @@ function AppRoute() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
 
-        <Route element={<ProtectedRoute />}>
+        <Route
+          element={
+            <ProtectedRoute>
+              <Header />
+            </ProtectedRoute>
+          }
+        >
           <Route path="/income" element={<AddIncome />} />
           <Route path="/expenses" element={<AddExpenses />} />
           <Route path="/listpage" element={<ListPage />} />
@@ -50,6 +63,7 @@ function AppRoute() {
           <Route path="/expenses/:id" element={<AddExpenses />} />
           <Route path="/monthfilter" element={<MonthExpenses />} />
           <Route path="/filterdate" element={<FilterDate />} />
+          <Route path="/users" element={<Users />} />
         </Route>
       </Routes>
     </>

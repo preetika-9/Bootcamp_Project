@@ -16,6 +16,11 @@ code {
   color: #000;
 }
 
+.nav-header {
+  background-color: #dee2e6;
+  padding: 10px 30px;
+}
+
 .register-section,
 .login-section {
   height: 100vh;
@@ -52,6 +57,7 @@ code {
 
 .login-wrapper,
 .income-wrapper,
+.register-wrapper,
 .expenses-wrapper {
   display: flex;
   justify-content: center;
@@ -84,7 +90,10 @@ code {
 
 .footer-listpage {
   display: flex;
-  flex-wrap: wrap;
+}
+
+.modal-box {
+  display: flex;
 }
 
 .button-add {
@@ -95,21 +104,12 @@ code {
   margin-left: 50px;
 }
 
-.icon {
-  color: white;
+.color-blue {
+  color: blue !important;
 }
 
-.overlay {
-  position: fixed;
-  display: none;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  cursor: pointer;
+.user-image {
+  border-radius: 50%;
 }
 
 @media (min-width: 576px) {
